@@ -32,8 +32,10 @@ function Contact(){
           _subject: `Softify website — ${form.topic}`,
           _template: 'table',
           _captcha: 'false',
+          _honey: honey,
         }),
       });
+      console.log('[contact] formsubmit response status', res.status);
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.success === 'false') throw new Error(data.message || 'send failed');
       setSent(true);
@@ -104,12 +106,13 @@ function Contact(){
                   <textarea rows="3" value={form.message} onChange={e=>setForm({...form, message:e.target.value})} placeholder="Describe your task, budget or demo request."/>
                 </div>
 
-                {/* Honeypot — invisible to users, bots will fill it. */}
+                {/* Honeypot — invisible to users, bots will fill it. _honey is FormSubmit's native field. */}
                 <div className="cf-honey" aria-hidden="true">
-                  <label>Leave this field empty</label>
+                  <label htmlFor="cf-honey-input">Do not fill this field</label>
                   <input
+                    id="cf-honey-input"
                     type="text"
-                    name="website"
+                    name="_honey"
                     tabIndex="-1"
                     autoComplete="off"
                     value={honey}
