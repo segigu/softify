@@ -1,8 +1,48 @@
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/sergei.gubenov@gmail.com';
+
 function Contact(){
   const [form, setForm] = React.useState({name: '', phone: '', company: '', message: '', topic: 'Consultation'});
+  const [honey, setHoney] = React.useState('');
   const [sent, setSent] = React.useState(false);
+  const [sending, setSending] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const mountedAt = React.useRef(Date.now());
   const topics = ["Consultation", "EDM", "Mediator · Media Pilot", "DB:Regions", "Mediareport", "Other"];
-  function submit(e){ e.preventDefault(); setSent(true); }
+
+  async function submit(e){
+    e.preventDefault();
+    if (sending) return;
+
+    // Spam guards: honeypot field + minimum dwell time on the form.
+    if (honey) { setSent(true); return; }
+    if (Date.now() - mountedAt.current < 1500) { setSent(true); return; }
+
+    setSending(true);
+    setError('');
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          company: form.company,
+          message: form.message,
+          topic: form.topic,
+          _subject: `Softify website — ${form.topic}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === 'false') throw new Error(data.message || 'send failed');
+      setSent(true);
+    } catch (err) {
+      setError('Could not send. Please try again or email contact@softify.ru directly.');
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <section id="contact" className="section contact" data-screen-label="12 Contact">
@@ -31,7 +71,7 @@ function Contact(){
             </div>
           </div>
 
-          <form className="contact-form" onSubmit={submit}>
+          <form className="contact-form" onSubmit={submit} noValidate>
             {!sent ? (
               <>
                 <div className="cf-label mono">01 / topic</div>
@@ -64,12 +104,29 @@ function Contact(){
                   <textarea rows="3" value={form.message} onChange={e=>setForm({...form, message:e.target.value})} placeholder="Describe your task, budget or demo request."/>
                 </div>
 
+                {/* Honeypot — invisible to users, bots will fill it. */}
+                <div className="cf-honey" aria-hidden="true">
+                  <label>Leave this field empty</label>
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex="-1"
+                    autoComplete="off"
+                    value={honey}
+                    onChange={e=>setHoney(e.target.value)}
+                  />
+                </div>
+
+                {error && <div className="cf-error mono">{error}</div>}
+
                 <div className="cf-foot">
                   <p className="mono cf-policy">
                     By clicking &ldquo;Send&rdquo;, you agree to our{' '}
                     <a href="https://disk.yandex.ru/i/Lkj0KQvwNnWr8Q" target="_blank" rel="noopener">privacy policy</a>.
                   </p>
-                  <button className="btn btn-primary" type="submit">Send <span className="arr">→</span></button>
+                  <button className="btn btn-primary" type="submit" disabled={sending}>
+                    {sending ? 'Sending…' : <>Send <span className="arr">→</span></>}
+                  </button>
                 </div>
               </>
             ) : (
@@ -77,7 +134,7 @@ function Contact(){
                 <div className="mono" style={{color:'var(--accent-2)', fontSize:12, letterSpacing:'.08em'}}>● MESSAGE RECEIVED</div>
                 <h3 style={{marginTop: 14}}>Thanks, {form.name || 'friend'}!</h3>
                 <p className="lead" style={{marginTop: 10}}>We&rsquo;ll get back to you about &ldquo;{form.topic}&rdquo; within one business day.</p>
-                <button className="btn btn-ghost" type="button" onClick={()=>{setSent(false); setForm({name:'',phone:'',company:'',message:'',topic:'Consultation'})}} style={{marginTop: 20}}>Send another</button>
+                <button className="btn btn-ghost" type="button" onClick={()=>{setSent(false); setError(''); setForm({name:'',phone:'',company:'',message:'',topic:'Consultation'})}} style={{marginTop: 20}}>Send another</button>
               </div>
             )}
           </form>
@@ -107,9 +164,12 @@ function Contact(){
           border-radius: 6px; font-family: var(--font-body); font-size: 15px; color: var(--fg); outline: none; transition: border-color .2s ease; resize: vertical;
         }
         .cf-field input:focus, .cf-field textarea:focus{ border-color: var(--accent-2); }
+        .cf-honey{ position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+        .cf-error{ padding: 10px 12px; border: 1px solid #d04848; border-radius: 6px; color: #d04848; font-size: 12px; letter-spacing: .04em; }
         .cf-foot{ display:flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;}
         .cf-policy{ font-size: 10.5px; color: var(--muted); max-width: 40ch;}
         .cf-policy a{ text-decoration: underline;}
+        .cf-foot button[disabled]{ opacity: .55; cursor: progress; }
         .cf-done{ padding: 20px 0; }
       `}</style>
     </section>
