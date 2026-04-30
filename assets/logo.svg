@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40" fill="none" aria-label="софтифай">
-  <g fill="currentColor">
-    
-    <rect x="0" y="4" width="32" height="32" rx="6" fill="currentColor"></rect>
-    <path d="M5 20 C 8 20, 8 13, 11 13 C 14 13, 14 27, 17 27 C 20 27, 20 15, 23 15 C 26 15, 26 22, 29 22" stroke="var(--bg)" stroke-width="2" stroke-linecap="round" fill="none"></path>
-    
-    <text x="42" y="27" font-family="&#39;Space Grotesk&#39;, sans-serif" font-weight="600" font-size="20" letter-spacing="-0.02em">софтифай</text>
-  </g>
-</svg>

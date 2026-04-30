@@ -25,14 +25,16 @@ function Reveal({children, delay=0, as:Tag="div", style, className=""}){
 }
 
 function BrandMark({size=24}){
-  // Rounded-square mark inspired by the original softify.ru favicon aesthetic:
-  // a solid tile with a waveform glyph cut through it.
+  // Real Softify mark from softify.ru — three cyan chevrons (language-neutral).
   return (
-    <svg className="brand-mark" width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden>
-      <rect x="0" y="0" width="32" height="32" rx="7" fill="currentColor"/>
-      <path d="M5 16 C 8 16, 8 9, 11 9 C 14 9, 14 23, 17 23 C 20 23, 20 11, 23 11 C 26 11, 26 18, 29 18"
-        stroke="var(--bg)" strokeWidth="2" strokeLinecap="round" fill="none"/>
-    </svg>
+    <img
+      className="brand-mark"
+      src="assets/softify-mark.png"
+      width={size * 280/150}
+      height={size}
+      alt=""
+      aria-hidden
+    />
   );
 }
 

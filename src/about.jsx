@@ -6,13 +6,13 @@ function About(){
           <div className="about-left">
             <div className="eyebrow">About the company</div>
             <h2>
-              Part of <span className="emg-pill">EMG</span><br/>
+              Part of <a href="https://emg.fm" target="_blank" rel="noopener" className="emg-pill">EMG</a><br/>
               <span style={{color:'var(--muted)', fontWeight: 400}}>— Russia&rsquo;s leading radio broadcaster.</span>
             </h2>
           </div>
           <div className="about-right">
             <p className="lead">
-              Softify LLC is part of the <strong>European Media Group</strong> — the country&rsquo;s largest radio holding.
+              Softify LLC is part of the <a href="https://emg.fm" target="_blank" rel="noopener" className="emg-link"><strong>European Media Group</strong></a> — the country&rsquo;s largest radio holding.
               We build internal enterprise software used every day by newsrooms, advertising departments, accountants
               and legal teams across the holding&rsquo;s radio stations.
             </p>
@@ -62,7 +62,11 @@ function About(){
           border: 1.5px solid var(--fg); border-radius: 999px;
           font-family: var(--font-mono); font-size: .5em; letter-spacing: .08em;
           vertical-align: middle; position: relative; top: -0.15em;
+          color: var(--fg); transition: background .2s ease, color .2s ease, border-color .2s ease;
         }
+        .emg-pill:hover{ background: var(--fg); color: var(--bg); }
+        .emg-link{ border-bottom: 1px dashed var(--line-strong); transition: color .2s ease, border-color .2s ease; }
+        .emg-link:hover{ color: var(--accent-2); border-color: var(--accent-2); }
         .about-cards{
           margin-top: 32px; display:grid; grid-template-columns: 1fr 1fr; gap: 1px;
           background: var(--line);

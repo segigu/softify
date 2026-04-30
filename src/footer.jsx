@@ -56,7 +56,7 @@ function Footer(){
           font-size: clamp(72px, 16vw, 240px); line-height: .82; letter-spacing: -0.05em;
           padding-bottom: clamp(24px, 4vw, 60px);
           border-bottom: 1px solid var(--line); }
-        .foot-big svg{ flex-shrink: 0; opacity: .6; }
+        .foot-big svg, .foot-big img{ flex-shrink: 0; opacity: .8; }
         .foot-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: clamp(24px, 3vw, 48px); padding: clamp(32px, 4vw, 60px) 0;}
         @media (max-width: 900px){ .foot-grid{ grid-template-columns: 1fr 1fr; } }
         @media (max-width: 540px){ .foot-grid{ grid-template-columns: 1fr; } }
