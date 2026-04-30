@@ -6,8 +6,8 @@
   --muted: #6B7280;
   --line: rgba(14,17,22,.10);
   --line-strong: rgba(14,17,22,.22);
-  --accent: #0A1F44;
-  --accent-2: #3B82F6;
+  --accent: #0B3A55;
+  --accent-2: #1FA9E8;
   --accent-ink: #FFFFFF;
   --radius: 6px;
   --max: 1360px;
@@ -26,8 +26,8 @@ html[data-theme="dark"]{
   --muted:#9098A4;
   --line: rgba(255,255,255,.10);
   --line-strong: rgba(255,255,255,.24);
-  --accent:#E6ECF8;
-  --accent-2:#7FA7FF;
+  --accent:#E6F3FB;
+  --accent-2:#5BC7F5;
   --accent-ink:#0A0C10;
 }
 

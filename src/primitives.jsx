@@ -30,7 +30,7 @@ function BrandMark({size=24}){
     <img
       className="brand-mark"
       src="assets/softify-mark.png"
-      width={size * 280/150}
+      width={Math.round(size * 812 / 493)}
       height={size}
       alt=""
       aria-hidden

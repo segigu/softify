@@ -1,14 +1,15 @@
 // Tweak defaults — editable via host
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "theme": "light",
-  "accent": "indigo",
+  "accent": "cyan",
   "density": "comfortable",
   "heroAnim": true
 }/*EDITMODE-END*/;
 
 const ACCENTS = {
-  indigo: { accent: "#0A1F44", accent2: "#3B82F6", ink: "#FFFFFF" },
-  graphite: { accent: "#0E1116", accent2: "#4B5563", ink: "#FFFFFF" },
+  cyan:    { accent: "#0B3A55", accent2: "#1FA9E8", ink: "#FFFFFF" },
+  indigo:  { accent: "#0A1F44", accent2: "#3B82F6", ink: "#FFFFFF" },
+  graphite:{ accent: "#0E1116", accent2: "#4B5563", ink: "#FFFFFF" },
   emerald: { accent: "#0A3D2F", accent2: "#10B981", ink: "#FFFFFF" },
   amber:   { accent: "#2A1A06", accent2: "#F59E0B", ink: "#FFFFFF" },
 };
@@ -17,7 +18,7 @@ function applyTweaks(state){
   const html = document.documentElement;
   html.dataset.theme = state.theme;
   html.dataset.density = state.density;
-  const a = ACCENTS[state.accent] || ACCENTS.indigo;
+  const a = ACCENTS[state.accent] || ACCENTS.cyan;
   html.style.setProperty("--accent", a.accent);
   html.style.setProperty("--accent-2", a.accent2);
   html.style.setProperty("--accent-ink", a.ink);
