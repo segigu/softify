@@ -85,7 +85,8 @@ function ProductBand({idx, id, name, subtitle, tagline, features, children, meta
         .pb-info{ display:flex; flex-direction: column; gap: 18px; }
         .pb-index{ color: var(--muted); font-size: 12px; letter-spacing: .06em; }
         .pb-name h3{ font-size: clamp(32px, 4.2vw, 64px); line-height: 1; letter-spacing: -0.03em; font-weight: 500; }
-        .pb-subtitle{ color: var(--accent-2); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px; }
+        .pb-subtitle{ color: var(--muted); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-top: 10px; transition: color .25s ease; }
+        .product-band:hover .pb-subtitle{ color: var(--accent-2); }
         .pb-tagline{ font-size: clamp(16px, 1.2vw, 19px); color: var(--fg-2); line-height: 1.5; max-width: 46ch; }
         .pb-features{ list-style: none; margin: 8px 0 0; padding: 0; display:flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--line); padding-top: 20px; }
         .pb-features li{ display:flex; gap: 14px; align-items: baseline; font-size: 14px; line-height: 1.55; }

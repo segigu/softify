@@ -214,7 +214,7 @@ function HeroWave({animOn}){
       <div className="wave-frame">
         <canvas ref={canvasRef} aria-hidden />
         <div className="wave-tl mono">RX 01 · stable signal</div>
-        <div className="wave-tr mono">{hovering ? '◉ live' : '○ preview'}</div>
+        <div className={`wave-tr mono ${hovering ? 'live' : ''}`}>{hovering ? '◉ live' : '○ preview'}</div>
         <div className="wave-bl mono">move your cursor</div>
         <div className="wave-br mono">24/7</div>
       </div>
@@ -234,7 +234,8 @@ function HeroWave({animOn}){
           letter-spacing: .06em; text-transform: uppercase;
         }
         .wave-tl{ top: 14px; left: 16px; }
-        .wave-tr{ top: 14px; right: 16px; color: var(--accent-2); }
+        .wave-tr{ top: 14px; right: 16px; transition: color .25s ease; }
+        .wave-tr.live{ color: var(--accent-2); }
         .wave-bl{ bottom: 14px; left: 16px; }
         .wave-br{ bottom: 14px; right: 16px; }
       `}</style>

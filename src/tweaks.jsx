@@ -7,7 +7,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 
 const ACCENTS = {
-  cyan:    { accent: "#0B3A55", accent2: "#1FA9E8", ink: "#FFFFFF" },
+  cyan:    { accent: "#0E1116", accent2: "#1FA9E8", ink: "#FFFFFF" },
   indigo:  { accent: "#0A1F44", accent2: "#3B82F6", ink: "#FFFFFF" },
   graphite:{ accent: "#0E1116", accent2: "#4B5563", ink: "#FFFFFF" },
   emerald: { accent: "#0A3D2F", accent2: "#10B981", ink: "#FFFFFF" },
@@ -24,8 +24,21 @@ function applyTweaks(state){
   html.style.setProperty("--accent-ink", a.ink);
 }
 
+function readPersistedTheme(){
+  try {
+    const saved = localStorage.getItem('softify-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch {}
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+  return null;
+}
+
 function useTweaks(){
-  const [state, setState] = React.useState(TWEAK_DEFAULTS);
+  const initial = (() => {
+    const t = readPersistedTheme();
+    return t ? { ...TWEAK_DEFAULTS, theme: t } : TWEAK_DEFAULTS;
+  })();
+  const [state, setState] = React.useState(initial);
   const [visible, setVisible] = React.useState(false);
 
   React.useEffect(()=>{ applyTweaks(state); }, [state]);
@@ -44,6 +57,7 @@ function useTweaks(){
   function set(patch){
     const next = {...state, ...patch};
     setState(next);
+    if (patch.theme) { try { localStorage.setItem('softify-theme', patch.theme); } catch {} }
     try { window.parent.postMessage({type:'__edit_mode_set_keys', edits: patch}, '*'); } catch {}
   }
 

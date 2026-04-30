@@ -21,7 +21,8 @@ function Stats(){
         .stat-tile:last-child{ border-right: none; }
         @media (max-width: 860px){ .stat-tile:nth-child(2){ border-right: none; } .stat-tile:nth-child(-n+2){ border-bottom: 1px solid var(--line); }}
         .stat-num{ font-family: var(--font-display); font-size: clamp(56px, 6.5vw, 104px); line-height: .9; letter-spacing: -0.04em; font-weight: 500; }
-        .stat-num .suf{ color: var(--accent-2); }
+        .stat-num .suf{ color: var(--muted); transition: color .25s ease; }
+        .stat-tile:hover .stat-num .suf{ color: var(--accent-2); }
         .stat-label{ font-size: 13px; color: var(--fg-2); line-height: 1.35; }
         .stat-sub{ font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
       `}</style>
