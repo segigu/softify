@@ -33,12 +33,7 @@ function Footer(){
           <div className="fg-col">
             <div className="fg-k mono">DOCUMENTS</div>
             <ul className="fg-docs">
-              <li><a href="#">Privacy policy →</a></li>
-              <li><a href="#">Certificate 1 →</a></li>
-              <li><a href="#">Certificate 2 →</a></li>
-              <li><a href="#">Certificate 3 →</a></li>
-              <li><a href="#">Amendment 1 →</a></li>
-              <li><a href="#">Amendment 2 →</a></li>
+              <li><a href="https://disk.yandex.ru/i/Lkj0KQvwNnWr8Q" target="_blank" rel="noopener">Privacy policy →</a></li>
             </ul>
           </div>
         </div>

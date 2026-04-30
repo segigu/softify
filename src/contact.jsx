@@ -67,7 +67,7 @@ function Contact(){
                 <div className="cf-foot">
                   <p className="mono cf-policy">
                     By clicking &ldquo;Send&rdquo;, you agree to our{' '}
-                    <a href="#">privacy policy</a>.
+                    <a href="https://disk.yandex.ru/i/Lkj0KQvwNnWr8Q" target="_blank" rel="noopener">privacy policy</a>.
                   </p>
                   <button className="btn btn-primary" type="submit">Send <span className="arr">→</span></button>
                 </div>
