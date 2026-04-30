@@ -34,6 +34,13 @@ function Footer(){
             <div className="fg-k mono">DOCUMENTS</div>
             <ul className="fg-docs">
               <li><a href="https://disk.yandex.ru/i/Lkj0KQvwNnWr8Q" target="_blank" rel="noopener">Privacy policy →</a></li>
+              <li><a href="https://disk.yandex.ru/i/SWztOMrZvjlJgw" target="_blank" rel="noopener">Certificate 1 →</a></li>
+              <li><a href="https://disk.yandex.ru/i/rANQjhT5nHOakw" target="_blank" rel="noopener">Certificate 2 →</a></li>
+              <li><a href="https://disk.yandex.ru/i/EOI6GZE1ss36TQ" target="_blank" rel="noopener">Certificate 3 →</a></li>
+              <li><a href="https://disk.yandex.ru/i/kp-hPhyANpo7ww" target="_blank" rel="noopener">Certificate 4 →</a></li>
+              <li><a href="https://disk.yandex.ru/i/dMRhZ5pZtoLZmQ" target="_blank" rel="noopener">Certificate 5 →</a></li>
+              <li><a href="https://disk.yandex.ru/i/lQowsJQ1ey1XSg" target="_blank" rel="noopener">Amendment 1 →</a></li>
+              <li><a href="https://disk.yandex.ru/i/cAh48Y3yQo1sAg" target="_blank" rel="noopener">Amendment 2 →</a></li>
             </ul>
           </div>
         </div>
